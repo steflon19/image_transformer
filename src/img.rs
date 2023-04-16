@@ -13,16 +13,15 @@ impl Image {
     /// Creates a new [`img::Image`] from a given `PathBuff`
     /// Returns an error if the file does not exist
     pub fn new(image_path: PathBuf) -> Result<Image> {
-        // Use the image crate to read the image file 
+        // Use the image crate to read the image file
         let img = image::open(image_path)?;
         Ok(Image { img })
     }
 
     /// Applies a kernel to the [`img::Image`]
     /// 
-    /// [`img::apply_convolution_matrix`] matrix slice as &[Vec<f32>]
+    /// [`img::apply_convolution_matrix`] matrix slice as `&[Vec<f32>]`
     /// and returns an `ImageBuffer<Rgba<u8>, Vec<u8>>` containing the transformed image.
-    // pub fn apply_convolution_matrix(img: &DynamicImage, matrix: &[Vec<f32>]) -> ImageBuffer<Rgba<u8>, Vec<u8>> {
     pub fn apply_convolution_matrix(&self, matrix: &[Vec<f32>]) -> ImageBuffer<Rgba<u8>, Vec<u8>> {
         let (width, height) = self.img.dimensions();
         let mut output = ImageBuffer::new(width, height);
