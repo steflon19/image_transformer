@@ -10,10 +10,7 @@ fn main() -> Result<()> {
     
     // Parse the matrix string into a matrix of floats
     let matrix_str = args.matrix;
-    let matrix = match util::parse_convolution_matrix(&matrix_str) {
-        Some(m) => m,
-        None => return Err(anyhow!("Invalid matrix size"))
-    };
+    let matrix = util::parse_convolution_matrix(&matrix_str)?;
 
     // Check input file path
     let image_path = match args.input_file.exists() {
